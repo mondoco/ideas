@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>بنك الأفكار</title>
+    <link rel="stylesheet" href="css/style.css">
+    <!-- خطوط Google -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome 6 (أيقونات) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1> <span class="hed">بنك الأفكار </span>💡</h1>
+            <button class="add-idea-btn" id="openAddModal">+ إضافة فكرة جديدة</button>
+        </header>
+
+        <!-- شريط البحث والتصفية -->
+        <div class="search-bar">
+            <input type="text" id="searchInput" placeholder="🔍 ابحث بالعنوان أو الوصف...">
+            <select id="tagFilter">
+                <option value="">كل التصنيفات</option>
+                <!-- التصنيفات هتظهر هنا ديناميكيًا -->
+            </select>
+        </div>
+
+        <!-- قائمة الأفكار -->
+        <div class="ideas-grid" id="ideasGrid"></div>
+
+        <!-- Modal إضافة / تعديل فكرة -->
+        <div class="modal" id="ideaModal">
+            <div class="modal-content">
+                <span class="close" id="closeModal">&times;</span>
+                <h2 id="modalTitle">إضافة فكرة جديدة</h2>
+                <form id="ideaForm">
+                    <input type="hidden" id="ideaId">
+                    <input type="text" id="ideaTitle" placeholder="عنوان الفكرة" required>
+                    <textarea id="ideaDescription" placeholder="وصف الفكرة..." rows="4" required></textarea>
+                    
+                    <div class="form-group">
+                        <label>التصنيفات (افصل بينهم بفاصلة)</label>
+                        <input type="text" id="ideaTags" placeholder="مثال: تقنية, تعليم, ابتكار">
+                    </div>
+                    <div class="form-group">
+                        <label>رؤية الفكرة</label>
+                        <select id="ideaVisibility">
+                            <option value="private">🔒 خاص (أنا فقط)</option>
+                            <option value="public">🌐 عام (للجميع)</option>
+                            <option value="selected">👥 مستخدمين مختارين</option>
+                        </select>
+                        </div>
+
+                        <div class="form-group" id="selectedUsersGroup" style="display:none;">
+                        <label>اختر المستخدمين المسموح لهم</label>
+                        <div id="usersCheckboxList" class="users-checkbox-list">
+                            <!-- قائمة المستخدمين هتتعبى هنا -->
+                        </div>
+                    </div>
+
+                    <div class="file-upload">
+                        <label>الصور:</label>
+                        <input type="file" id="imageUpload" accept="image/*" multiple>
+                        <div class="image-preview" id="imagePreview"></div>
+                    </div>
+                    
+                    <div class="file-upload">
+                        <label>التسجيل الصوتي:</label>
+                        <input type="file" id="audioUpload" accept="audio/*">
+                        <audio id="audioPreview" controls style="display:none;"></audio>
+                    </div>
+                    
+                    <button type="submit">حفظ</button>
+                </form>
+                <div class="upload-progress" id="uploadProgress" style="display:none;">
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progressFill"></div>
+                    </div>
+                    <p id="progressText">جاري الرفع...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://widget.cloudinary.com/v2.0/global/all.js" type="text/javascript"></script>
+    <script type="module" src="js/app.js"></script>
+</body>
+</html>
